@@ -1,4 +1,4 @@
-package com.mycompany.myapp.models;
+package com.mycompany.myapp.domain;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,7 +22,7 @@ public class Article {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="author_id",nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Author author;
 

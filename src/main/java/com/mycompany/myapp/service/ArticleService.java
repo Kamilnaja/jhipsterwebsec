@@ -1,6 +1,6 @@
 package com.mycompany.myapp.service;
 
-import com.mycompany.myapp.models.Article;
+import com.mycompany.myapp.domain.Article;
 import com.mycompany.myapp.repository.ArticleRepository;
 import com.mycompany.myapp.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
