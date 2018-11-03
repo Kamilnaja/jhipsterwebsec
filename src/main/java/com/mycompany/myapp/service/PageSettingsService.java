@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PageSettingsService {
@@ -19,16 +18,13 @@ public class PageSettingsService {
         this.pageSettingsRepository = pageSettingsRepository;
     }
 
-    public List<PageSettings> getPageSettings() {
-        return pageSettingsRepository.findAll();
+    public PageSettings getPageSettings() {
+        List<PageSettings> settings = pageSettingsRepository.findAll();
+        return settings.get(0);
     }
 
-    public PageSettings setPageSettings(PageSettings pageSettings) {
+    public PageSettings deleteOldSettingsAndSetNew(PageSettings pageSettings) {
+        this.pageSettingsRepository.deleteAll();
         return pageSettingsRepository.save(pageSettings);
-    }
-
-
-    public Optional<PageSettings> getFirstSettings() {
-        return pageSettingsRepository.findById(1);
     }
 }

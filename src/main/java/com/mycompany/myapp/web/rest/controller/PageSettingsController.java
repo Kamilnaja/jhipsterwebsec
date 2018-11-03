@@ -5,12 +5,13 @@ import com.mycompany.myapp.service.PageSettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
+@RequestMapping("/api")
 public class PageSettingsController {
     private final
     PageSettingsService pageSettingsService;
@@ -20,15 +21,13 @@ public class PageSettingsController {
         this.pageSettingsService = pageSettingsService;
     }
 
-    @GetMapping("/api/pagesettings")
-    public Optional<PageSettings> getFirstSettings() {
-        return pageSettingsService.getFirstSettings();
+    @GetMapping("/pagesetting")
+    public PageSettings getFirstSettings() {
+        return pageSettingsService.getPageSettings();
     }
 
-
-    @PostMapping("/api/pagesettings")
+    @PostMapping("/pagesetting")
     public PageSettings setPageSettings(@Valid PageSettings pageSettings) {
-        return pageSettingsService.setPageSettings(pageSettings);
+        return pageSettingsService.deleteOldSettingsAndSetNew(pageSettings);
     }
-// todo put, delete
 }

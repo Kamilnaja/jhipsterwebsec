@@ -1,6 +1,7 @@
 package com.mycompany.myapp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pagesettings")
@@ -9,6 +10,7 @@ public class PageSettings {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String title;
     private String subtitle;
     private String footer;

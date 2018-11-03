@@ -28,24 +28,24 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/post")
+    @GetMapping("/article")
     public List<Article> getAllArticles() {
         return articleService.findAll();
     }
 
-    @GetMapping("/author/{authorId}/post")
+    @GetMapping("/author/{authorId}/article")
     public Page<Article> getAllArticlesByAuthorId(@PathVariable(value = "authorId") Integer authorId, Pageable pageable) {
         return articleService.findByAuthorId(authorId, pageable);
     }
 
-    @PostMapping("/author/{authorId}/post")
+    @PostMapping("/author/{authorId}/article")
     public Article createPost(
             @PathVariable(value = "authorId") Integer authorId,
             @Valid @RequestBody Article article) throws Exception {
         return articleService.createPost(authorId, article);
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/article/{id}")
     public Optional<Article> findOne(@PathVariable("id") Integer id) {
         return articleService.findById(id);
     }
