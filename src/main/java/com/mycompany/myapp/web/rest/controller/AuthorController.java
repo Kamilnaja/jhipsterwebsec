@@ -20,17 +20,17 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping("/author")
+    @GetMapping("/authors")
     public List<Author> getAuthors() {
         return authorService.findAllAuthors();
     }
 
-    @GetMapping("/author/{id}")
+    @GetMapping("/authors/{id}")
     public Optional<Author> findAuthorById(@PathVariable("id") Integer id) {
         return authorService.findAuthorById(id);
     }
 
-    @PostMapping("/author")
+    @PostMapping("/authors")
     public Author createAuthor(@Valid @RequestBody Author author) {
         return authorService.createAuthor(author);
     }

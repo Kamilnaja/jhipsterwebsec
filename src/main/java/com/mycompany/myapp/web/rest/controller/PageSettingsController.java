@@ -21,12 +21,12 @@ public class PageSettingsController {
         this.pageSettingsService = pageSettingsService;
     }
 
-    @GetMapping("/pagesetting")
+    @GetMapping("/pagesettings")
     public PageSettings getFirstSettings() {
         return pageSettingsService.getPageSettings();
     }
 
-    @PostMapping("/pagesetting")
+    @PostMapping("/pagesettings")
     public PageSettings setPageSettings(@Valid PageSettings pageSettings) {
         return pageSettingsService.deleteOldSettingsAndSetNew(pageSettings);
     }

@@ -19,6 +19,7 @@ public class Article {
     private String subtitle;
 
     @NotNull
+    @Column(name = "content", length = 10000)
     private String content;
 
     @ManyToOne(optional = false)

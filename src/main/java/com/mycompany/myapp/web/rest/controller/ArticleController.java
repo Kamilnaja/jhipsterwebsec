@@ -33,12 +33,12 @@ public class ArticleController {
         return articleService.findAll();
     }
 
-    @GetMapping("/author/{authorId}/articles")
+    @GetMapping("/authors/{authorId}/articles")
     public Page<Article> getAllArticlesByAuthorId(@PathVariable(value = "authorId") Integer authorId, Pageable pageable) {
         return articleService.findByAuthorId(authorId, pageable);
     }
 
-    @PostMapping("/author/{authorId}/articles")
+    @PostMapping("/authors/{authorId}/articles")
     public Article createArticle(
             @PathVariable(value = "authorId") Integer authorId,
             @Valid @RequestBody Article article) throws Exception {

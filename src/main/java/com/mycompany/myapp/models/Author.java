@@ -14,7 +14,7 @@ public class Author {
     private String firstname;
 
     @NotNull
-    private String secondname;
+    private String lastname;
 
     @NotNull
     @Column(unique = true)
@@ -23,9 +23,9 @@ public class Author {
     public Author() {
     }
 
-    public Author(@NotNull String firstname, @NotNull String secondname, @NotNull String email) {
+    public Author(@NotNull String firstname, @NotNull String lastname, @NotNull String email) {
         this.firstname = firstname;
-        this.secondname = secondname;
+        this.lastname = lastname;
         this.email = email;
     }
 
@@ -49,12 +49,12 @@ public class Author {
         this.firstname = firstname;
     }
 
-    public String getSecondname() {
-        return secondname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setSecondname(String secondname) {
-        this.secondname = secondname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
