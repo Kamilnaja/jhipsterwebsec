@@ -1,6 +1,6 @@
 package com.mycompany.myapp.web.rest.controller;
 
-import com.mycompany.myapp.domain.Article;
+import com.mycompany.myapp.models.Article;
 import com.mycompany.myapp.repository.AuthorRepository;
 import com.mycompany.myapp.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class ArticleController {
 
-    private final
+    final
     AuthorRepository authorRepository;
 
-    private final
+    final
     ArticleService articleService;
 
     @Autowired
@@ -28,24 +28,24 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/article")
+    @GetMapping("/articles")
     public List<Article> getAllArticles() {
         return articleService.findAll();
     }
 
-    @GetMapping("/author/{authorId}/article")
+    @GetMapping("/author/{authorId}/articles")
     public Page<Article> getAllArticlesByAuthorId(@PathVariable(value = "authorId") Integer authorId, Pageable pageable) {
         return articleService.findByAuthorId(authorId, pageable);
     }
 
-    @PostMapping("/author/{authorId}/article")
-    public Article createPost(
+    @PostMapping("/author/{authorId}/articles")
+    public Article createArticle(
             @PathVariable(value = "authorId") Integer authorId,
             @Valid @RequestBody Article article) throws Exception {
-        return articleService.createPost(authorId, article);
+        return articleService.createArticle(authorId, article);
     }
 
-    @GetMapping("/article/{id}")
+    @GetMapping("/articles/{id}")
     public Optional<Article> findOne(@PathVariable("id") Integer id) {
         return articleService.findById(id);
     }

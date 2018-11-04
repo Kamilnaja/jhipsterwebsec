@@ -1,6 +1,6 @@
 package com.mycompany.myapp.service;
 
-import com.mycompany.myapp.domain.Article;
+import com.mycompany.myapp.models.Article;
 import com.mycompany.myapp.repository.ArticleRepository;
 import com.mycompany.myapp.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +35,10 @@ public class ArticleService {
         return articleRepository.findByAuthorId(authorId, pageable);
     }
 
-    public Article createPost(Integer authorId, Article article) throws Exception {
+    public Article createArticle(Integer authorId, Article article) throws Exception {
         return authorRepository.findById(authorId).map(author -> {
             article.setAuthor(author);
             return articleRepository.save(article);
         }).orElseThrow(() -> new Exception("error with: " + authorId));
     }
-
-
 }

@@ -1,9 +1,6 @@
-package com.mycompany.myapp.domain;
-
-import org.checkerframework.common.aliasing.qual.Unique;
+package com.mycompany.myapp.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity(name="Author")
@@ -17,20 +14,18 @@ public class Author {
     private String firstname;
 
     @NotNull
-    private String lastname;
+    private String secondname;
 
-    @Email
     @NotNull
-    @Unique
     @Column(unique = true)
     private String email;
 
     public Author() {
     }
 
-    public Author(@NotNull String firstname, @NotNull String lastname, @NotNull String email) {
+    public Author(@NotNull String firstname, @NotNull String secondname, @NotNull String email) {
         this.firstname = firstname;
-        this.lastname = lastname;
+        this.secondname = secondname;
         this.email = email;
     }
 
@@ -54,12 +49,12 @@ public class Author {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getSecondname() {
+        return secondname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setSecondname(String secondname) {
+        this.secondname = secondname;
     }
 
     public String getEmail() {

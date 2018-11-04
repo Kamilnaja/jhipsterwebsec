@@ -1,6 +1,6 @@
 package com.mycompany.myapp.web.rest.controller;
 
-import com.mycompany.myapp.domain.Author;
+import com.mycompany.myapp.models.Author;
 import com.mycompany.myapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
