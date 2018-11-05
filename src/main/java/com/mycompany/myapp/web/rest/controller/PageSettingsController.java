@@ -23,7 +23,18 @@ public class PageSettingsController {
 
     @GetMapping("/pagesettings")
     public PageSettings getFirstSettings() {
-        return pageSettingsService.getPageSettings();
+        try {
+            return pageSettingsService.getPageSettings();
+        } catch (IndexOutOfBoundsException e) {
+            return createDefaultSettings();
+        }
+    }
+
+    private PageSettings createDefaultSettings() {
+        PageSettings defaultSettings = new PageSettings();
+        defaultSettings.setTitle("Default title");
+        defaultSettings.setFooter("Default footer");
+        return defaultSettings;
     }
 
     @PostMapping("/pagesettings")
