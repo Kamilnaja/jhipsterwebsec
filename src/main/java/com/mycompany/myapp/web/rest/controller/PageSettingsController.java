@@ -3,12 +3,9 @@ package com.mycompany.myapp.web.rest.controller;
 import com.mycompany.myapp.models.PageSettings;
 import com.mycompany.myapp.service.PageSettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/api")
@@ -37,8 +34,9 @@ public class PageSettingsController {
         return defaultSettings;
     }
 
-    @PostMapping("/pagesettings")
-    public PageSettings setPageSettings(@Valid PageSettings pageSettings) {
+    @PostMapping(
+        value = "/pagesettings", consumes = APPLICATION_JSON_VALUE)
+    public PageSettings setPageSettings(@RequestBody PageSettings pageSettings) {
         return pageSettingsService.deleteOldSettingsAndSetNew(pageSettings);
     }
 }

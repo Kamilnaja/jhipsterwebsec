@@ -40,8 +40,8 @@ public class ArticleController {
 
     @PostMapping("/authors/{authorId}/articles")
     public Article createArticle(
-            @PathVariable(value = "authorId") Integer authorId,
-            @Valid @RequestBody Article article) throws Exception {
+        @PathVariable(value = "authorId") Integer authorId,
+        @Valid @RequestBody Article article) throws Exception {
         return articleService.createArticle(authorId, article);
     }
 
@@ -49,4 +49,5 @@ public class ArticleController {
     public Optional<Article> findOne(@PathVariable("id") Integer id) {
         return articleService.findById(id);
     }
+
 }
