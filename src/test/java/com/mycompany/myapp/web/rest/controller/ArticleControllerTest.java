@@ -1,9 +1,9 @@
 package com.mycompany.myapp.web.rest.controller;
 
+import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.models.Article;
-import com.mycompany.myapp.models.Author;
 import com.mycompany.myapp.repository.ArticleRepository;
-import com.mycompany.myapp.repository.AuthorRepository;
+import com.mycompany.myapp.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +22,17 @@ public class ArticleControllerTest {
     @Autowired
     ArticleRepository articleRepository;
     @Autowired
-    AuthorRepository authorRepository;
+    UserRepository userRepository;
     private MockMvc mockMvc;
 
     @Test
     public void endpointShouldReturnOk() throws Exception {
         Article article = new Article();
-        Author autor = new Author();
+        User autor = new User();
         autor.setEmail("kamil@.com");
-        autor.setFirstname("kamil");
-        autor.setId(10);
-        article.setAuthor(autor);
+        autor.setFirstName("Kamil");
+        autor.setId((long) 10);
+        article.setUser(autor);
         article.setTitle("HEllo");
         article.setContent("hello world");
 

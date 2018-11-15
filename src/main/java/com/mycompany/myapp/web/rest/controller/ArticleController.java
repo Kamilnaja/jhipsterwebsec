@@ -1,7 +1,7 @@
 package com.mycompany.myapp.web.rest.controller;
 
 import com.mycompany.myapp.models.Article;
-import com.mycompany.myapp.repository.AuthorRepository;
+import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,14 +17,14 @@ import java.util.Optional;
 public class ArticleController {
 
     final
-    AuthorRepository authorRepository;
+    UserRepository userRepository;
 
     final
     ArticleService articleService;
 
     @Autowired
-    public ArticleController(AuthorRepository authorRepository, ArticleService articleService) {
-        this.authorRepository = authorRepository;
+    public ArticleController(UserRepository userRepository, ArticleService articleService) {
+        this.userRepository = userRepository;
         this.articleService = articleService;
     }
 
@@ -34,13 +34,13 @@ public class ArticleController {
     }
 
     @GetMapping("/authors/{authorId}/articles")
-    public Page<Article> getAllArticlesByAuthorId(@PathVariable(value = "authorId") Integer authorId, Pageable pageable) {
-        return articleService.findByAuthorId(authorId, pageable);
+    public Page<Article> getAllArticlesByAuthorId(@PathVariable(value = "authorId") Long authorId, Pageable pageable) {
+        return articleService.findByUserId(authorId, pageable);
     }
 
     @PostMapping("/authors/{authorId}/articles")
     public Article createArticle(
-        @PathVariable(value = "authorId") Integer authorId,
+        @PathVariable(value = "authorId") Long authorId,
         @Valid @RequestBody Article article) throws Exception {
         return articleService.createArticle(authorId, article);
     }

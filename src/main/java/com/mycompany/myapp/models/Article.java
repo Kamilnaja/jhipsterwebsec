@@ -1,5 +1,6 @@
 package com.mycompany.myapp.models;
 
+import com.mycompany.myapp.domain.User;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,9 +24,9 @@ public class Article {
     private String content;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Author author;
+    private User user;
 
     public Article() {
     }
@@ -39,12 +40,12 @@ public class Article {
         this.title = title;
     }
 
-    public Author getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getId() {
