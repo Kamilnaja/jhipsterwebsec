@@ -38,11 +38,10 @@ public class ArticleController {
         return articleService.findByUserId(authorId, pageable);
     }
 
-    @PostMapping("/authors/{authorId}/articles")
+    @PostMapping("/articles")
     public Article createArticle(
-        @PathVariable(value = "authorId") Long authorId,
         @Valid @RequestBody Article article) throws Exception {
-        return articleService.createArticle(authorId, article);
+        return articleService.createArticle(article);
     }
 
     @GetMapping("/articles/{id}")

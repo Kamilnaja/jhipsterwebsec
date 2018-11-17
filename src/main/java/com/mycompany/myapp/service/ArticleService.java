@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service;
 
+import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.models.Article;
 import com.mycompany.myapp.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,11 @@ public class ArticleService {
         return articleRepository.findByUserId(userId, pageable);
     }
 
-    public Article createArticle(Long userId, Article article) throws Exception {
-        return userService.getUserWithAuthorities(userId).map(user -> {
+    public Article createArticle(Article article) throws Exception {
+        Optional<User> userId = userService.getCurrentUserId(); // co zwraca ta metoda?
+        return userService.getCurrentUserId().map(user -> {
             article.setUser(user);
             return articleRepository.save(article);
-        }).orElseThrow(() -> new Exception("error with: " + userId));
+        }).orElseThrow(() -> new Exception("error with: creating article" + userId));
     }
 }
