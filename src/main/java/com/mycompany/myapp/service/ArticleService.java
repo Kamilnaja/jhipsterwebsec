@@ -5,18 +5,18 @@ import com.mycompany.myapp.models.Article;
 import com.mycompany.myapp.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ArticleService {
-    final
-    ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
-    final UserService userService;
+    private final UserService userService;
 
     @Autowired
     public ArticleService(ArticleRepository articleRepository, UserService authorRepository) {
@@ -24,16 +24,9 @@ public class ArticleService {
         this.userService = authorRepository;
     }
 
-    public ArticleRepository getArticleRepository() {
-        return articleRepository;
-    }
-
-    public UserService getUserService() {
-        return userService;
-    }
-
-    public List<Article> findAll() {
-        return articleRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<Article> findAllArticlesPaginated(int page, int size) {
+        return articleRepository.findAll(PageRequest.of(page, size));
     }
 
     public Optional<Article> findById(Integer id) {
