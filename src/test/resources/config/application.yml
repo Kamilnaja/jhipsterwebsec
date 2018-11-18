@@ -1,45 +1,30 @@
-# ===================================================================
-# Spring Boot configuration.
-#
-# This configuration is used for unit/integration tests.
-#
-# More information on profiles: https://www.jhipster.tech/profiles/
-# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
-# ===================================================================
-
-# ===================================================================
-# Standard Spring Boot properties.
-# Full reference is available at:
-# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
-# ===================================================================
-
 eureka:
     client:
         enabled: false
     instance:
         appname: ncmssec
         instanceId: ncmssec:${spring.application.instance-id:${random.value}}
-
 spring:
     application:
         name: ncmssec
     cache:
         type: simple
     datasource:
-        type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:ncmssec;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        name:
-        username:
+        #        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:h2:~/test;DB_CLOSE_ON_EXIT=FALSE
+        name: sa
+        username: sa
         password:
         hikari:
             auto-commit: false
+        driver-class-name: org.h2.Driver
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedH2Dialect
         database: H2
         open-in-view: false
-        show-sql: false
+        show-sql: true
         hibernate:
-            ddl-auto: none
+            ddl-auto: update
             naming:
                 physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy

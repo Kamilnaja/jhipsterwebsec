@@ -33,6 +33,12 @@ public class ArticleController {
         return articleService.findByUserId(authorId, pageable);
     }
 
+    @GetMapping("/articles")
+    public Page<Article> getAllArticles(Pageable pageable) {
+        return articleService.findAllArticlesPaginated(0, Integer.MAX_VALUE);
+    }
+
+
     @PostMapping("/articles")
     public Article createArticle(
         @Valid @RequestBody Article article) throws Exception {
