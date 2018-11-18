@@ -38,7 +38,7 @@ public class ArticleService {
     }
 
     public Article createArticle(Article article) throws Exception {
-        Optional<User> userId = userService.getCurrentUserId(); // co zwraca ta metoda?
+        Optional<User> userId = userService.getCurrentUserId();
         return userService.getCurrentUserId().map(user -> {
             article.setUser(user);
             return articleRepository.save(article);

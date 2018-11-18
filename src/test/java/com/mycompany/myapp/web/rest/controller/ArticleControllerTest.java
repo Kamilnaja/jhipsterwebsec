@@ -2,7 +2,6 @@ package com.mycompany.myapp.web.rest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.myapp.models.Article;
-import com.mycompany.myapp.repository.ArticleRepository;
 import com.mycompany.myapp.service.ArticleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,9 +38,6 @@ public class ArticleControllerTest {
     @MockBean
     private ArticleService articleService;
 
-    @MockBean
-    private ArticleRepository articleRepository;
-
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -53,6 +49,7 @@ public class ArticleControllerTest {
         final Page<Article> page = new PageImpl<>(articles);
 
         when(articleService.findAllArticlesPaginated(0, Integer.MAX_VALUE)).thenReturn(page);
+
         this.mvc
             .perform(get("/api/articles").accept("application/json"))
             .andExpect(status().isOk())
@@ -64,7 +61,7 @@ public class ArticleControllerTest {
 
     @Test
     public void postArticleShouldReturnOk() throws Exception {
-        Article article = new Article("Test", "test");
+        Article article = new Article("Test", "Test");
         String content = objectMapper.writeValueAsString(article);
         this.mvc.perform(
             post("/api/articles")
