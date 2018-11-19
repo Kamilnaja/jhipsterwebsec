@@ -21,10 +21,10 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/articles/{page}/{size}")
+    @GetMapping("/articles")
     public Page<Article> getAllArticles(
-        @PathVariable(value = "page") Integer page,
-        @PathVariable(value = "size") Integer size) {
+        @RequestParam("page") Integer page,
+        @RequestParam("size") Integer size) {
         return articleService.findAllArticlesPaginated(page, size);
     }
 
@@ -32,12 +32,6 @@ public class ArticleController {
     public Page<Article> getAllArticlesByAuthorId(@PathVariable(value = "authorId") Long authorId, Pageable pageable) {
         return articleService.findByUserId(authorId, pageable);
     }
-
-    @GetMapping("/articles")
-    public Page<Article> getAllArticles(Pageable pageable) {
-        return articleService.findAllArticlesPaginated(0, Integer.MAX_VALUE);
-    }
-
 
     @PostMapping("/articles")
     public Article createArticle(
